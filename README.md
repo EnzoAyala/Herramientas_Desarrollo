@@ -93,7 +93,11 @@ http://127.0.0.1:5000/
 - Ejemplo de git restore 
 ![](./screenshots/17.png)
 ![](./screenshots/18.png)
-
+- Historial de puntos de control
+![](./screenshots/19.png)
+![](./screenshots/20.png)
+- Historial de cabeceras
+![](./screenshots/21.png)
 
 ### 🏠 Página Principal
 --- 
