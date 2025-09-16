@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .actions button { margin-right: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}"> Inicio </a>
+        </nav>
+    </header>
+    <h1>Gestión de Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+            <!-- Los usuarios se cargarán aquí dinámicamente -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchUsers();
+        });
+
+        function fetchUsers() {
+            fetch('/api/users')
+                .then(response => response.json())
+                .then(users => {
+                    const tableBody = document.getElementById('user-table-body');
+                    tableBody.innerHTML = ''; // Limpiar tabla
+                    users.forEach(user => {
+                        const row = `
+                            <tr>
+                                <td>${user.id}</td>
+                                <td>${user.nombre}</td>
+                                <td>${user.apellido}</td>
+                                <td>${user.correo}</td>
+                                <td>
+                                    <select onchange="updateRole(${user.id}, this.value)">
+                                        <option value="1" ${user.rol_id === 1 ? 'selected' : ''}>Usuario</option>
+                                        <option value="2" ${user.rol_id === 2 ? 'selected' : ''}>Administrador</option>
+                                    </select>
+                                </td>
+                                <td class="actions">
+                                    <button onclick="deleteUser(${user.id})">Eliminar</button>
+                                </td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row;
+                    });
+                })
+                .catch(error => console.error('Error al cargar usuarios:', error));
+        }
+
+        function updateRole(userId, newRoleId) {
+            if (!confirm(`¿Estás seguro de que quieres cambiar el rol del usuario ${userId}?`)) {
+                return;
+            }
+            fetch(`/api/users/${userId}/role`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ rol_id: newRoleId }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Rol actualizado con éxito.');
+                    fetchUsers(); // Recargar lista
+                } else {
+                    alert('Error al actualizar el rol.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function deleteUser(userId) {
+            if (!confirm(`¿Estás seguro de que quieres eliminar al usuario ${userId}?`)) {
+                return;
+            }
+            fetch(`/api/users/${userId}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Usuario eliminado con éxito.');
+                    fetchUsers(); // Recargar lista
+                } else {
+                    alert('Error al eliminar el usuario.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
