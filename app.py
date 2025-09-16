@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from config import Config
 from models import db, Rol, Almacenamiento, Usuario
-from security import hash_password, check_password
+from security import hash_password, check_password, admin_required
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from api import api
 
 def seed_data():
     # Inicializar roles
@@ -33,6 +34,9 @@ def create_app():
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'login'
+
+    # Registrar blueprint de la API
+    app.register_blueprint(api, url_prefix='/api')
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -112,6 +116,11 @@ def create_app():
 
         return render_template('register.html')
 
+    @app.route('/dashboard')
+    @login_required
+    @admin_required
+    def dashboard():
+        return render_template('dashboard.html')
 
     @app.route('/logout')
     @login_required
@@ -120,10 +129,9 @@ def create_app():
         flash('Has cerrado sesión exitosamente.', 'info')
         return redirect(url_for('index'))
 
-
     return app
 
 # Ejecuta la app
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
