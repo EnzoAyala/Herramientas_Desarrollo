@@ -4,7 +4,7 @@
 El **Carrito de Compras** es una aplicación web que permite a los usuarios navegar productos, agregarlos a un carrito virtual y realizar una compra simulada.  
 El sistema está desarrollado con **Flask (Python)** en el backend, conectado a **MySQL** como base de datos, y utiliza **HTML, CSS y JavaScript** para la interfaz de usuario.  
 El proyecto busca mostrar la integración entre frontend, backend y base de datos, siendo una base para futuras implementaciones de e-commerce.
----
+
 
 ## ✅ Requerimientos Funcionales  
 1. El sistema debe permitir a los usuarios **registrarse e iniciar sesión** con credenciales válidas.  
@@ -69,7 +69,7 @@ http://127.0.0.1:5000/
 |--------|-----|-----------|
 | Enzo | Dev Backend | Implementó todo el backend |
 | Brillight | Frontend | Realizado la estructura|
-| Adrian | Manejo de errores | Se encargo de los concflictos |
+| Adrihan | Manejo de errores | Se encargo de los concflictos |
 
 ## 🔄 Flujo de Trabajo en Git
 - Estructura de ramas: `feature/`, `fix/`
