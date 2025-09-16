@@ -106,5 +106,5 @@ http://127.0.0.1:5000/
 - Prototipo login 
 ![Login](./screenshots/iniciosesion.png)
 - Prototipo registro
-![Registrar] (./screenshots/registro.png)
+![Registrar](./screenshots/registro.png)
 
