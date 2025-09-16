@@ -4,6 +4,25 @@
 El **Carrito de Compras** es una aplicación web que permite a los usuarios navegar productos, agregarlos a un carrito virtual y realizar una compra simulada.  
 El sistema está desarrollado con **Flask (Python)** en el backend, conectado a **MySQL** como base de datos, y utiliza **HTML, CSS y JavaScript** para la interfaz de usuario.  
 El proyecto busca mostrar la integración entre frontend, backend y base de datos, siendo una base para futuras implementaciones de e-commerce.
+---
+
+## ✅ Requerimientos Funcionales  
+1. El sistema debe permitir a los usuarios **registrarse e iniciar sesión** con credenciales válidas.  
+2. El usuario podrá **visualizar un catálogo de productos** con nombre, precio e imagen.  
+3. El sistema debe permitir **agregar y eliminar productos** del carrito de compras.  
+4. El usuario podrá **visualizar un resumen de su carrito** con el total calculado automáticamente.  
+5. El sistema debe simular un **proceso de compra**, mostrando confirmación del pedido.  
+
+---
+
+## ⚙️ Requerimientos No Funcionales  
+1. La aplicación debe ser **responsive**, adaptándose a dispositivos móviles y de escritorio.  
+2. El sistema debe **responder en menos de 3 segundos** a las acciones del usuario en condiciones normales.  
+3. La base de datos debe garantizar **integridad y consistencia** en la información de productos y pedidos.  
+4. El código debe estar **documentado y estructurado** para facilitar su mantenimiento.  
+5. El sistema debe contar con **medidas básicas de seguridad**, como cifrado de contraseñas en la base de datos.  
+
+---
 
 ## 🛠️ Tecnologías Utilizadas
 - Python / Flask 
