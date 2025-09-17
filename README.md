@@ -119,11 +119,20 @@ http://127.0.0.1:5000/
 ![](./screenshots/21.png)
 
 ### 🏠 Página Principal
---- 
-- Prototipo de la página principal -    Inicio
-![Página principal](./screenshots/index.png)
-- Prototipo login 
-![Login](./screenshots/iniciosesion.png)
-- Prototipo registro
-![Registrar](./screenshots/registro.png)
+---
+
+#### 📌 Prototipo de la Página Principal
+<p align="center">
+  <img src="./screenshots/index.png" alt="Página principal" width="600"/>
+</p>
+
+#### 🔑 Prototipo Login
+<p align="center">
+  <img src="./screenshots/iniciosesion.png" alt="Login" width="450"/>
+</p>
+
+#### 📝 Prototipo Registro
+<p align="center">
+  <img src="./screenshots/registro.png" alt="Registro" width="450"/>
+</p>
 
