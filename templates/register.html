@@ -1,77 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #00bcd4, #006064);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+    .card-header {
+      background: #00bcd4;
+      color: white;
+      text-align: center;
+    }
+    .form-control:focus {
+      border-color: #00bcd4;
+      box-shadow: 0px 0px 6px rgba(0,188,212,0.6);
+    }
+    .btn-primary {
+      background-color: #00bcd4;
+      border: none;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background-color: #0097a7;
+      transform: scale(1.05);
+    }
+    .btn-secondary {
+      transition: 0.3s;
+    }
+    .btn-secondary:hover {
+      transform: scale(1.05);
+    }
+    a {
+      text-decoration: none;
+      color: #00bcd4;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #0097a7;
+    }
+    #passwordError {
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Registro de Usuario</h3>
-                    </div>
-                    <div class="card-body">
-                        <form id="registerForm" action="{{ url_for('register') }}" method="POST" onsubmit="return validatePassword()">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="correo" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="correo" name="correo" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="telefono" name="telefono">
-                            </div>
-                            <div class="mb-3">
-                                <label for="dni" class="form-label">DNI</label>
-                                <input type="text" class="form-control" id="dni" name="dni">
-                            </div>
-                            <div class="mb-3">
-                                <label for="contrasena" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena" minlength="8" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="confirmar_contrasena" class="form-label">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" minlength="8" required>
-                                <div id="passwordHelp" class="form-text">La contraseña debe tener al menos 8 caracteres.</div>
-                                <div id="passwordError" class="text-danger" style="display: none;">Las contraseñas no coinciden.</div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Registrarse</button>
-                            <a href="{{ url_for('login') }}" class="btn btn-secondary">Iniciar Sesión</a>
-                        </form>
-                    </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="mb-0">📝 Registro de Usuario</h3>
+          </div>
+          <div class="card-body p-4">
+            <form id="registerForm" action="{{ url_for('register') }}" method="POST" onsubmit="return validatePassword()">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="nombre" class="form-label">👤 Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
                 </div>
-            </div>
+                <div class="col-md-6 mb-3">
+                  <label for="apellido" class="form-label">👥 Apellido</label>
+                  <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Tu apellido" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="correo" class="form-label">📧 Correo Electrónico</label>
+                <input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="telefono" class="form-label">📱 Teléfono</label>
+                  <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Opcional">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="dni" class="form-label">🆔 DNI</label>
+                  <input type="text" class="form-control" id="dni" name="dni" placeholder="Opcional">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="contrasena" class="form-label">🔑 Contraseña</label>
+                <input type="password" class="form-control" id="contrasena" name="contrasena" minlength="8" placeholder="Mínimo 8 caracteres" required>
+              </div>
+              <div class="mb-3">
+                <label for="confirmar_contrasena" class="form-label">🔐 Confirmar Contraseña</label>
+                <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" minlength="8" required>
+                <div id="passwordHelp" class="form-text">La contraseña debe tener al menos 8 caracteres.</div>
+                <div id="passwordError" class="text-danger" style="display: none;">⚠️ Las contraseñas no coinciden.</div>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <a href="{{ url_for('login') }}" class="btn btn-secondary">Ya tengo una cuenta</a>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <small class="text-muted">Sistema de Registro Seguro © 2025</small>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        function validatePassword() {
-            const password = document.getElementById('contrasena');
-            const confirmPassword = document.getElementById('confirmar_contrasena');
-            const errorDiv = document.getElementById('passwordError');
+  <script>
+    function validatePassword() {
+      const password = document.getElementById('contrasena');
+      const confirmPassword = document.getElementById('confirmar_contrasena');
+      const errorDiv = document.getElementById('passwordError');
 
-            if (password.value !== confirmPassword.value) {
-                errorDiv.style.display = 'block';
-                confirmPassword.focus();
-                return false;
-            } else {
-                errorDiv.style.display = 'none';
-                return true;
-            }
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      if (password.value !== confirmPassword.value) {
+        errorDiv.style.display = 'block';
+        confirmPassword.focus();
+        return false;
+      } else {
+        errorDiv.style.display = 'none';
+        return true;
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
