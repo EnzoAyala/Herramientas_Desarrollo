@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tiendita Virtual</title>
+    <title>Tienda Virtual</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/index.css') }}"
@@ -14,13 +14,45 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-   
+    <style>
+      .menu-toggle {
+        display: none;
+        font-size: 1.8rem;
+        color: #fff;
+        cursor: pointer;
+      }
+       /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background: #111;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                padding: 15px 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
   </head>
 
   <body>
     <!-- Header -->
     <header>
-      <div class="logo">TienditaVirtual</div>
+      <div class="logo">TiendaVirtual</div>
       <i class="fas fa-bars menu-toggle"></i>
       <nav>
         <a href="#">Inicio</a>
@@ -47,7 +79,7 @@
     >
       <div class="content">
         <h1>
-          Bienvenido a <span style="color: #00bcd4">Virtual Store</span><br />
+          Bienvenido a <span style="color: #00bcd4">VirtualShop</span><br />
           Tecnología al alcance de tu bolsillo
         </h1>
         <p class="lead">
@@ -63,7 +95,7 @@
     <section class="section" id="nosotros">
       <h2>Sobre Nosotros</h2>
       <p>
-        En <strong>LargoPhone</strong> ofrecemos los mejores teléfonos móviles a
+        En <strong>VirtualShop</strong> ofrecemos los mejores teléfonos móviles a
         precios accesibles. Nuestra misión es brindarte calidad y tecnología al
         alcance de tu mano.
       </p>
@@ -85,20 +117,20 @@
         </div>
         <div class="producto">
           <img
-            src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
-            alt="iPhone pro max"
+             src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
+            alt="iPhone Pro Max"
           />
-          <h3>iPhone Pro Max</h3>
+          <h3>IPhone Pro Max</h3>
           <p>Gran batería y cámara avanzada para todo el día.</p>
           <p class="precio">$650.00</p>
           <a href="#" class="btn">Agregar al carrito</a>
         </div>
         <div class="producto">
           <img
-            src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
+             src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
             alt="iPhone Lite"
           />
-          <h3>iPhone Lite</h3>
+          <h3>IPhone Lite</h3>
           <p>Opción económica, perfecta para uso diario.</p>
           <p class="precio">$299.00</p>
           <a href="#" class="btn">Agregar al carrito</a>
@@ -138,7 +170,7 @@
 
     <!-- Footer -->
     <footer>
-      <p>© 2025 LargoPhone. Todos los derechos reservados.</p>
+      <p>© 2025 VirtualShop. Todos los derechos reservados.</p>
     </footer>
 
     <script>

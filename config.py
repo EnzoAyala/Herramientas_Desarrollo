@@ -1,7 +1,6 @@
 #config.py
 
-DB_URI = "mysql+mysqlconnector://root:ozuna1234%40@localhost:3306/largophone"
-
+DB_URI = 'mysql+mysqlconnector://root:root@localhost/largophone'
 
 class Config:
     SQLALCHEMY_DATABASE_URI = DB_URI
