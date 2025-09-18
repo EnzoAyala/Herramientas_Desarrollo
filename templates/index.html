@@ -101,41 +101,13 @@
       </p>
     </section>
 
-    <!-- Catálogo -->
-    <section class="section" id="catalogo" style="background-color: #f5f5f5">
-      <h2>Catálogo</h2>
-      <div class="catalogo">
-        <div class="producto">
-          <img
-            src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
-            alt="iPhone 16"
-          />
-          <h3>iPhone 16 128GB</h3>
-          <p>Última generación con diseño premium y alto rendimiento.</p>
-          <p class="precio">$999.00</p>
-          <a href="#" class="btn">Agregar al carrito</a>
-        </div>
-        <div class="producto">
-          <img
-             src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
-            alt="iPhone Pro Max"
-          />
-          <h3>IPhone Pro Max</h3>
-          <p>Gran batería y cámara avanzada para todo el día.</p>
-          <p class="precio">$650.00</p>
-          <a href="#" class="btn">Agregar al carrito</a>
-        </div>
-        <div class="producto">
-          <img
-             src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
-            alt="iPhone Lite"
-          />
-          <h3>IPhone Lite</h3>
-          <p>Opción económica, perfecta para uso diario.</p>
-          <p class="precio">$299.00</p>
-          <a href="#" class="btn">Agregar al carrito</a>
-        </div>
+    <!-- Categorías -->
+    <section class="section" style="background-color: #f5f5f5">
+      <h2>Categorías</h2>
+      <div id="categorias" class="categorias"></div>
+        <!-- Se cargarán aquí las categorías -->
       </div>
+
     </section>
 
     <!-- Contacto -->
@@ -180,5 +152,6 @@
         nav.classList.toggle("active");
       });
     </script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   </body>
 </html>
