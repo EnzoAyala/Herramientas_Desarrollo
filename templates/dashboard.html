@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
+
 <body>
     <header>
         <nav class="navbar">
@@ -31,74 +33,74 @@
                 <!-- Los usuarios se cargarán aquí dinámicamente -->
             </tbody>
         </table>
+
+        <div class="categorias-container">
+            <div class="categoria-header">
+                <h2>Categorias</h2>
+                <button id="add-category-btn" class="btn-add-categoria">Añadir nueva categoria</button>
+            </div>
+
+            <!-- Modal para añadir categoría -->
+            <section id="add-category-modal" class="modal"
+                style="display:none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+                <div class="modal-content"
+                    style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; width: 80%; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <span class="close"
+                        style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+                    <h2 style="color: #3498db; margin-top: 0;">Añadir Nueva Categoría</h2>
+                    <form id="add-category-form">
+                        <label for="category-name" style="color: #333; font-weight: 600;">Nombre de la
+                            Categoría:</label>
+                        <input type="text" id="category-name" name="category-name" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+                        <label for="category-image" style="color: #333; font-weight: 600;">URL de la Imagen:</label>
+                        <input type="text" id="category-image" name="category-image" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+                        <button type="submit"
+                            style="width: 100%; background-color: #3498db; color: white; padding: 14px 20px; margin: 8px 0 0; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 16px;">
+                            Añadir
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+
+            <div id="categoria-table-body" class="categorias-container">
+                <!-- Las categorias se cargarán aquí dinámicamente -->
+            </div>
+
+            <section id="modal-modified-category" class="modal"
+                style="display:none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+                <div class="modal-content"
+                    style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; width: 80%; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <span class="close-modify"
+                        style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+                    <h2 style="color: #3498db; margin-top: 0;">Modificar Categoría</h2>
+                    <form id="modify-category-form">
+                        <input type="hidden" id="modify-category-id" name="category-id">
+                        <label for="modify-category-name" style="color: #333; font-weight: 600;">Nombre de la
+                            Categoría:</label>
+                        <input type="text" id="modify-category-name" name="category-name" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+                        <label for="modify-category-image" style="color: #333; font-weight: 600;">URL de la Imagen:</label>
+                        <input type="text" id="modify-category-image" name="category-image" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+                        <button type="submit"
+                            style="width: 100%; background-color: #3498db; color: white; padding: 14px 20px; margin: 8px 0 0; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 16px;">
+                            Modificar
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchUsers();
-        });
-
-        function fetchUsers() {
-            fetch('/api/users')
-                .then(response => response.json())
-                .then(users => {
-                    const tableBody = document.getElementById('user-table-body');
-                    tableBody.innerHTML = '';
-                    users.forEach(user => {
-                        const row = `
-                            <tr>
-                                <td>${user.id}</td>
-                                <td>${user.nombre}</td>
-                                <td>${user.apellido}</td>
-                                <td>${user.correo}</td>
-                                <td>
-                                    <select class="role-select" onchange="updateRole(${user.id}, this.value)">
-                                        <option value="1" ${user.rol_id === 1 ? 'selected' : ''}>Usuario</option>
-                                        <option value="2" ${user.rol_id === 2 ? 'selected' : ''}>Administrador</option>
-                                    </select>
-                                </td>
-                                <td class="actions">
-                                    <button class="btn-delete" onclick="deleteUser(${user.id})">Eliminar</button>
-                                </td>
-                            </tr>
-                        `;
-                        tableBody.innerHTML += row;
-                    });
-                })
-                .catch(error => console.error('Error al cargar usuarios:', error));
-        }
-
-        function updateRole(userId, newRoleId) {
-            if (!confirm(`¿Estás seguro de que quieres cambiar el rol del usuario ${userId}?`)) return;
-            fetch(`/api/users/${userId}/role`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ rol_id: newRoleId }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('Rol actualizado con éxito.');
-                    fetchUsers();
-                } else {
-                    alert('Error al actualizar el rol.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-
-        function deleteUser(userId) {
-            if (!confirm(`¿Estás seguro de que quieres eliminar al usuario ${userId}?`)) return;
-            fetch(`/api/users/${userId}`, { method: 'DELETE' })
-            .then(response => {
-                if (response.ok) {
-                    alert('Usuario eliminado con éxito.');
-                    fetchUsers();
-                } else {
-                    alert('Error al eliminar el usuario.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </body>
+
 </html>
