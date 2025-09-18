@@ -25,10 +25,20 @@ El proyecto busca mostrar la integración entre frontend, backend y base de dato
 ---
 
 ## 🛠️ Tecnologías Utilizadas
-- Python / Flask 
-- Html/ CSS/ JavaScript / 
-- Git / GitHub
-- Base de datos... MySql
+- Python / Flask → Se usará para la lógica del servidor, manejo de rutas, controladores y conexión con la base de datos. Será el backend que gestionará el carrito, las compras y los usuarios.
+
+- HTML / CSS / JavaScript → Se encargarán de la interfaz visual.
+
+- HTML: estructura de las páginas (catálogo, carrito, login, etc.).
+
+- CSS: diseño y estilos de la tienda (colores, fuentes, botones, disposición).
+
+- JavaScript: interacción dinámica (agregar al carrito, actualizar precios en tiempo real, validaciones).
+
+- Git / GitHub → Para el control de versiones, trabajo en equipo y almacenamiento del código de forma segura y organizada en un repositorio.
+
+- Base de datos MySQL → Guardará la información del sistema (productos, clientes, pedidos, usuarios, historial de compras).
+
 
 ## 🚀 Instalación y Ejecución
 Pasos para instalar y correr el proyecto...
