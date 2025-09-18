@@ -4,37 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <style>
-        body { font-family: sans-serif; margin: 2em; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .actions button { margin-right: 5px; }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
     <header>
-        <nav>
-            <a href="{{ url_for('index') }}"> Inicio </a>
+        <nav class="navbar">
+            <h2>Panel de Administración</h2>
+            <a href="{{ url_for('index') }}" class="btn-link">Inicio</a>
         </nav>
     </header>
-    <h1>Gestión de Usuarios</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="user-table-body">
-            <!-- Los usuarios se cargarán aquí dinámicamente -->
-        </tbody>
-    </table>
+
+    <main class="container">
+        <h1>Gestión de Usuarios</h1>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="user-table-body">
+                <!-- Los usuarios se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -46,7 +43,7 @@
                 .then(response => response.json())
                 .then(users => {
                     const tableBody = document.getElementById('user-table-body');
-                    tableBody.innerHTML = ''; // Limpiar tabla
+                    tableBody.innerHTML = '';
                     users.forEach(user => {
                         const row = `
                             <tr>
@@ -55,13 +52,13 @@
                                 <td>${user.apellido}</td>
                                 <td>${user.correo}</td>
                                 <td>
-                                    <select onchange="updateRole(${user.id}, this.value)">
+                                    <select class="role-select" onchange="updateRole(${user.id}, this.value)">
                                         <option value="1" ${user.rol_id === 1 ? 'selected' : ''}>Usuario</option>
                                         <option value="2" ${user.rol_id === 2 ? 'selected' : ''}>Administrador</option>
                                     </select>
                                 </td>
                                 <td class="actions">
-                                    <button onclick="deleteUser(${user.id})">Eliminar</button>
+                                    <button class="btn-delete" onclick="deleteUser(${user.id})">Eliminar</button>
                                 </td>
                             </tr>
                         `;
@@ -72,20 +69,16 @@
         }
 
         function updateRole(userId, newRoleId) {
-            if (!confirm(`¿Estás seguro de que quieres cambiar el rol del usuario ${userId}?`)) {
-                return;
-            }
+            if (!confirm(`¿Estás seguro de que quieres cambiar el rol del usuario ${userId}?`)) return;
             fetch(`/api/users/${userId}/role`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ rol_id: newRoleId }),
             })
             .then(response => {
                 if (response.ok) {
                     alert('Rol actualizado con éxito.');
-                    fetchUsers(); // Recargar lista
+                    fetchUsers();
                 } else {
                     alert('Error al actualizar el rol.');
                 }
@@ -94,16 +87,12 @@
         }
 
         function deleteUser(userId) {
-            if (!confirm(`¿Estás seguro de que quieres eliminar al usuario ${userId}?`)) {
-                return;
-            }
-            fetch(`/api/users/${userId}`, {
-                method: 'DELETE',
-            })
+            if (!confirm(`¿Estás seguro de que quieres eliminar al usuario ${userId}?`)) return;
+            fetch(`/api/users/${userId}`, { method: 'DELETE' })
             .then(response => {
                 if (response.ok) {
                     alert('Usuario eliminado con éxito.');
-                    fetchUsers(); // Recargar lista
+                    fetchUsers();
                 } else {
                     alert('Error al eliminar el usuario.');
                 }
