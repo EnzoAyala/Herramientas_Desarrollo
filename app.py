@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from config import Config
-from models import db, Rol, Almacenamiento, Usuario
+from models import db, Rol, Almacenamiento, Usuario, Categoria
 from security import hash_password, check_password, admin_required
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from api import api
@@ -22,6 +22,15 @@ def seed_data():
         db.session.add_all(almacenamientos)
         print('Almacenamientos insertados')
 
+    # Inicializar categorias
+    if not Categoria.query.first():
+        categorias = [
+            Categoria(id=1, nombre='APPLE', imagen='https://www.imprentaonline.net/blog/wp-content/webpc-passthru.php?src=https://www.imprentaonline.net/blog/wp-content/uploads/logo-apple.png&nocache=1'),
+            Categoria(id=2, nombre='SAMSUNG', imagen='https://static.vecteezy.com/system/resources/previews/020/336/290/non_2x/samsung-logo-samsung-icon-free-free-vector.jpg'),
+            Categoria(id=3, nombre='XIAOMI', imagen='https://images.seeklogo.com/logo-png/26/1/xiaomi-logo-png_seeklogo-268250.png'),
+        ]
+        db.session.add_all(categorias)
+        print('Categorias insertados')
     db.session.commit()
 
 def create_app():
