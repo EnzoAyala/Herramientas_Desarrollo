@@ -97,7 +97,7 @@ h1 {
     gap: 8px;
 }
 
-.btn-delete {
+.btnAdd-delete {
     background: #e74c3c;
     border: none;
     color: #fff;
@@ -107,7 +107,7 @@ h1 {
     transition: background 0.3s;
 }
 
-.btn-delete:hover {
+.btnAdd-delete:hover {
     background: #c0392b;
 }
 

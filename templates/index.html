@@ -1,124 +1,184 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Virtual</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .menu-toggle {
+        display: none;
+        font-size: 1.8rem;
+        color: #fff;
+        cursor: pointer;
+      }
+       /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background: #111;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                padding: 15px 0;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda De LargoPhone</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+            nav.active {
+                display: flex;
+            }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+            .menu-toggle {
+                display: block;
+            }
 
-</head>
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <!-- Header -->
     <header>
-        <nav>
-            <a href=""> Inicio </a>
-            <a href="#nosotros"> Sobre Nosotros </a>
-            <a href="{{ url_for('catalogo') }}"> Catalogo </a>
-            <a href="#contacto"> Contacto </a>
-        </nav>
-        <div class="auth-buttons">
-            {% if current_user.is_authenticated %}
-                {% if current_user.rol.name == 'administrador' %}
-                    <a href="{{ url_for('dashboard') }}"> Dashboard </a>
-                {% endif %}
-                <a href="{{ url_for('logout') }}"> Cerrar Sesión </a>
-            {% else %}
-                <a href="{{ url_for('login') }}"> Iniciar Sesión </a>
-                <a href="{{ url_for('register') }}"> Registrarse </a>
-            {% endif %}
-        </div>
-
+      <div class="logo">TiendaVirtual</div>
+      <i class="fas fa-bars menu-toggle"></i>
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#nosotros">Sobre Nosotros</a>
+        <a href="{{ url_for('catalogo') }}">Catálogo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="auth-buttons">
+        {% if current_user.is_authenticated %} {% if current_user.rol.name ==
+        'administrador' %}
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Iniciar Sesión</a>
+        <a href="{{ url_for('register') }}">Registrarse</a>
+        {% endif %}
+      </div>
     </header>
+
     <!-- Hero -->
-    <section class="hero">
-        <h1>Bienvenido a la tienda de largophone<br>
-            Precios a alcance de tu bolsillo</h1>
+    <section
+      class="hero d-flex align-items-center justify-content-center text-center text-white"
+    >
+      <div class="content">
+        <h1>
+          Bienvenido a <span style="color: #00bcd4">VirtualShop</span><br />
+          Tecnología al alcance de tu bolsillo
+        </h1>
+        <p class="lead">
+          Encuentra los mejores smartphones con precios accesibles
+        </p>
+        <a href="{{ url_for('catalogo') }}" class="btn btn-lg"
+          >Explorar Catálogo</a
+        >
+      </div>
     </section>
 
     <!-- Sobre Nosotros -->
-    <section class="section">
-        <h2>Sobre Nosotros</h2>
-        <p>En Tienda De LargoPhone, nos dedicamos a ofrecerte los mejores
-            teléfonos móviles a precios accesibles. Nuestra misión es
-            brindarte calidad y tecnología al alcance de tu mano.</p>
+    <section class="section" id="nosotros">
+      <h2>Sobre Nosotros</h2>
+      <p>
+        En <strong>VirtualShop</strong> ofrecemos los mejores teléfonos móviles a
+        precios accesibles. Nuestra misión es brindarte calidad y tecnología al
+        alcance de tu mano.
+      </p>
     </section>
 
-    <!-- Catalogo -->
-    <section class="section" id="catalogo" style="background-color: #e6e6e6 ;">
-        <h2>Catalogo</h2>
-        <div class="catalogo">
-            <!-- Productos 01 -->
-             <div class="producto">
-                <img scr="" alt="">
-                <h3>Nombre del producto</h3>
-                <p>Descripción del producto</p>
-                <p class="precio">$000.00</p>
-                <a href="#" class="btn">Agregar al carrito</a>
-             </div>
-            <!-- Productos 02 -->
-            <div class="producto">
-                <img scr="" alt="">
-                <h3>Nombre del producto</h3>
-                <p>Descripción del producto</p>
-                <p class="precio">$000.00</p>
-                <a href="#" class="btn">Agregar al carrito</a>
-            </div>
-            <!-- Productos 03 -->
-            <div class="producto">
-                <img scr="" alt="">
-                <h3>Nombre del producto</h3>
-                <p>Descripción del producto</p>
-                <p class="precio">$000.00</p>
-                <a href="#" class="btn">Agregar al carrito</a>
-            </div>
-            <!-- Productos 04 -->
-            <div class="producto">
-                <img scr="" alt="">
-                <h3>Nombre del producto</h3>
-                <p>Descripción del producto</p>
-                <p class="precio">$000.00</p>
-                <a href="#" class="btn">Agregar al carrito</a>
-            </div>
-            <!-- Productos 05 -->
-            <div class="producto">
-                <img scr="" alt="">
-                <h3>Nombre del producto</h3>
-                <p>Descripción del producto</p>
-                <p class="precio">$000.00</p>
-                <a href="#" class="btn">Agregar al carrito</a>
-            </div>
+    <!-- Catálogo -->
+    <section class="section" id="catalogo" style="background-color: #f5f5f5">
+      <h2>Catálogo</h2>
+      <div class="catalogo">
+        <div class="producto">
+          <img
+            src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
+            alt="iPhone 16"
+          />
+          <h3>iPhone 16 128GB</h3>
+          <p>Última generación con diseño premium y alto rendimiento.</p>
+          <p class="precio">$999.00</p>
+          <a href="#" class="btn">Agregar al carrito</a>
+        </div>
+        <div class="producto">
+          <img
+             src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
+            alt="iPhone Pro Max"
+          />
+          <h3>IPhone Pro Max</h3>
+          <p>Gran batería y cámara avanzada para todo el día.</p>
+          <p class="precio">$650.00</p>
+          <a href="#" class="btn">Agregar al carrito</a>
+        </div>
+        <div class="producto">
+          <img
+             src="https://www.iprostore.com.pe/web/image/product.product/1800/image_1024/%5BMYED3BE-A%5D%20IPHONE%2016%20128GB%20-%20TEAL?unique=4f735de"
+            alt="iPhone Lite"
+          />
+          <h3>IPhone Lite</h3>
+          <p>Opción económica, perfecta para uso diario.</p>
+          <p class="precio">$299.00</p>
+          <a href="#" class="btn">Agregar al carrito</a>
+        </div>
+      </div>
     </section>
-
 
     <!-- Contacto -->
     <section class="contacto" id="contacto">
-        <h2>Contactanos</h2>
-        <p> <i class="fa-solid fa-location-dot" style="color: #141414;"></i> Dirección: Av. La Mar N°2275, Tda. 164 San Miguel C.C. ShoppingCenter     <br>
-            <i class="fa-solid fa-phone-volume" style="color: #141414;"></i> Teléfono: +51 999999999  <br>
-            <i class="fa-solid fa-envelope" style="color: #141414;"></i> Correo: <a href="mailto:info@largophone.com">info@largophone.com</a></p>
+      <h2>Contáctanos</h2>
+      <p>
+        <i class="fa-solid fa-location-dot"></i> Dirección: Av. La Mar N°2275,
+        Tda. 164 San Miguel C.C. ShoppingCenter <br />
+        <i class="fa-solid fa-phone-volume"></i> Teléfono: +51 999999999 <br />
+        <i class="fa-solid fa-envelope"></i> Correo:
+        <a href="mailto:info@largophone.com">info@largophone.com</a>
+      </p>
 
-            <br>
-        <!-- Redes Sociales -->
-            <div class="social-icons">
-                <a href="" target="_blank"><i class="fa-brands fa-instagram fa-2xl" style="color: #ffffff"></i></a>
-                <a href="" target="_blank"><i class="fa-brands fa-facebook fa-2xl" style="color: #ffffff"></i></a>
-                <a href="" target="_blank"><i class="fa-brands fa-linkedin fa-2xl" style="color: #ffffff"></i></a>
-                <a href="" target="_blank"><i class="fa-brands fa-twitter fa-2xl" style="color: #ffffff"></i></a>
-                <a href="" target="_blank"><i class="fa-brands fa-youtube fa-2xl" style="color: #ffffff"></i></a>
-
-            </div>
-
+      <div class="social-icons">
+        <a href="#"
+          ><i class="fa-brands fa-instagram fa-2xl" style="color: #fff"></i
+        ></a>
+        <a href="#"
+          ><i class="fa-brands fa-facebook fa-2xl" style="color: #fff"></i
+        ></a>
+        <a href="#"
+          ><i class="fa-brands fa-linkedin fa-2xl" style="color: #fff"></i
+        ></a>
+        <a href="#"
+          ><i class="fa-brands fa-twitter fa-2xl" style="color: #fff"></i
+        ></a>
+        <a href="#"
+          ><i class="fa-brands fa-youtube fa-2xl" style="color: #fff"></i
+        ></a>
+      </div>
     </section>
-
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Tienda De LargoPhone. Todos los derechos reservados.</p>
-
+      <p>© 2025 VirtualShop. Todos los derechos reservados.</p>
     </footer>
-</body>
 
+    <script>
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("nav");
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+    </script>
+  </body>
 </html>
