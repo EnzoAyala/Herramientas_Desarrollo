@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="shortcut icon" href="../static/img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 
@@ -39,11 +40,18 @@
 
             <div class="categoria-header">
                 <h2>Categorias</h2>
-                <button id="add-category-btn" class="btn-add-categoria">Añadir nueva categoria</button>
+                <button id="add-category-btn" class="btn-add">Añadir nueva categoria</button>
             </div>
             
             <div id="categoria-table-body" class="categorias-container">
                 <!-- Las categorias se cargarán aquí dinámicamente -->
+            </div>
+
+            <hr>
+
+            <div class="categoria-header">
+                <h2>Productos</h2>
+                <button id="add-product-btn" class="btn-add">Añadir nuevo producto</button>
             </div>
 
         </div>

@@ -4,6 +4,7 @@ from models import db, Rol, Almacenamiento, Usuario, Categoria
 from security import hash_password, check_password, admin_required
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from api import api
+from flask_migrate import Migrate
 
 def seed_data():
     # Inicializar roles
@@ -40,6 +41,8 @@ def create_app():
 
     db.init_app(app)
 
+    migrate = Migrate(app, db)
+
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'login'
@@ -49,12 +52,7 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
-        return Usuario.query.get(int(user_id))
-
-    # Crea las tablas si no existen
-    with app.app_context():
-        db.create_all()
-        seed_data()
+        return Usuario.query.get(int(user_id))    
 
     # RUTAS
     @app.route('/')
@@ -64,6 +62,12 @@ def create_app():
     @app.route('/catalogo')
     def catalogo():
         return render_template('catalogo.html')
+    
+    @app.route('/dashboard')
+    @login_required
+    @admin_required
+    def dashboard():
+        return render_template('dashboard.html')
 
     @app.route('/login', methods=['GET', 'POST'])
     def login():
@@ -124,12 +128,6 @@ def create_app():
             return redirect(url_for('login'))
 
         return render_template('register.html')
-
-    @app.route('/dashboard')
-    @login_required
-    @admin_required
-    def dashboard():
-        return render_template('dashboard.html')
 
     @app.route('/logout')
     @login_required

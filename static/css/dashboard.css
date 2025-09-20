@@ -135,7 +135,7 @@ h1 {
 }
 
 /* Botón de añadir categoría */
-.btn-add-categoria {
+.btn-add {
     background-color: #2ecc71;
     color: white;
     padding: 10px 18px;
@@ -147,11 +147,9 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.btn-add-categoria:hover {
+.btn-add:hover {
     background-color: #27ae60;
 }
-
-
 
 /* Contenedor de tarjetas */
 .categorias-container {
