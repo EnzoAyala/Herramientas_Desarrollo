@@ -1,22 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
     fetchUsers();
     fetchCategorias();
+    fetchProductos();
 
     const modalAdd = document.getElementById('add-category-modal');
     const btnAdd = document.getElementById('add-category-btn');
-    const spanAdd = document.getElementsByClassName('close')[0];
 
     const modalModify = document.getElementById('modal-modified-category');
     const spanModify = document.getElementsByClassName('close-modify')[0];
 
+    const modalAddProduct = document.getElementById('add-product-modal');
+    const btnAddProduct = document.getElementById('add-product-btn');
 
-    // Botón para añadir categoría
+
+    // Botón para añadir y cerrar categoría 
     btnAdd.onclick = function () {
         modalAdd.style.display = 'block';
     }
 
-    spanAdd.onclick = function () {
-        modalAdd.style.display = 'none';
+    // Botón para abrir modal de agregar producto
+    btnAddProduct.onclick = function () {
+        modalAddProduct.style.display = 'block';
     }
 
     spanModify.onclick = function () {
@@ -30,7 +34,18 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target == modalModify) {
             modalModify.style.display = 'none';
         }
+        if (event.target == modalAddProduct) {
+            modalAddProduct.style.display = 'none';
+        }
     }
+
+    // Funcion que cierra todos los modales con class="close"
+    document.querySelectorAll('.close').forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal');
+            if (modal) modal.style.display = 'none';
+        })
+    })
 
     // Formulario para añadir categoría
     document.getElementById('add-category-form').addEventListener('submit', function (e) {
@@ -101,6 +116,66 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Error al conectar con el servidor.');
             });
     });
+
+    // Formulario para añadir productos
+    document.getElementById('add-product-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const productoNombre = document.getElementById('producto-name').value;
+        const productoDescripcion = document.getElementById('producto-description').value;
+        const productoPrecio = document.getElementById('producto-price').value;
+        const productoImagen = document.getElementById('producto-image').value;
+        const productoCategoria = document.getElementById('producto-categoria').value;
+        const productoModelo = document.getElementById('producto-modelo').value;
+        const productoAlmacenamiento = document.getElementById('producto-almacenamiento').value;
+        const productoColor = document.getElementById('producto-color').value;
+        const productoStock = document.getElementById('producto-stock').value;
+        const productoProcesador = document.getElementById('producto-procesador').value;
+        const productoCamara = document.getElementById('producto-camara').value;
+        const productoBateria = document.getElementById('producto-bateria').value;
+        const productoPantalla = document.getElementById('producto-pantalla').value;
+        const productoMemoria = document.getElementById('producto-memoria').value;
+
+        fetch('/api/producto/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nombre: productoNombre,
+                descripcion: productoDescripcion,
+                precio: productoPrecio,
+                imagen: productoImagen,
+                categoria_id: productoCategoria,
+                modelo_id: productoModelo,
+                almacenamiento_id: productoAlmacenamiento,
+                color_id: productoColor,
+                stock: productoStock,
+                procesador: productoProcesador,
+                camara: productoCamara,
+                bateria: productoBateria,
+                pantalla: productoPantalla,
+                memoria: productoMemoria
+            }),
+        })
+            .then(response => {
+                return response.json().then(data => ({ ok: response.ok, data: data }));
+            })
+            .then(({ ok, data }) => {
+                if (ok) {
+                    alert(data.message || 'Producto añadido con éxito.');
+                    modalAddProduct.style.display = 'none';
+                    fetchProductos(); // Recargar productos
+                } else {
+                    alert(data.error || 'Error al añadir el producto.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al conectar con el servidor.');
+            });
+
+    });
 });
 
 function fetchUsers() {
@@ -161,12 +236,52 @@ function fetchCategorias() {
         .catch(error => console.error('Error al cargar categorias:', error));
 }
 
+function fetchProductos() {
+    fetch('/api/producto/get')
+        .then(response => response.json())
+        .then(productos => {
+            const tableBody = document.getElementById('productos-container');
+            tableBody.innerHTML = ''; // Limpiar tabla
+            if (!Array.isArray(productos)) {
+                tableBody.innerHTML = '<h2>No hay productos disponibles</h2>';
+                return;
+            }
+            productos.forEach(producto => {
+                const row = `
+                    <div class="productos-container">
+                        <div class="producto">
+                            <div class="producto-img-container">
+                                <img src="${producto.imagen}" alt="Imagen de ${producto.nombre}">
+                            </div>
+                            <div class="producto-body">
+                                <h3>${producto.nombre}</h3>
+                                <p>${producto.descripcion}</p>
+                                <p class="precio">${producto.precio}</p>
+                            </div>
+                            <div class="producto-buttons">
+                                <button onclick="openAddProductModal()">Ver detalles / Modificar</button>
+                                <button">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error al cargar productos:', error));
+}
+
 function openModifyModal(id, nombre, imagen) {
     const modalModify = document.getElementById('modal-modified-category');
     document.getElementById('modify-category-id').value = id;
     document.getElementById('modify-category-name').value = nombre;
     document.getElementById('modify-category-image').value = imagen;
     modalModify.style.display = 'block';
+}
+
+function openAddProductModal() {
+    const modalAddProduct = document.getElementById('add-product-modal');
+    modalAddProduct.style.display = 'block';
 }
 
 // -- Funciones para los usuarios ---------------------------------------------------------------------------------

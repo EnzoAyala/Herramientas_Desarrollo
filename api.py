@@ -129,16 +129,16 @@ def get_productos():
         'descripcion': producto.descripcion,
         'precio': producto.precio,
         'imagen': producto.imagen,
+        'categoria_id': producto.categoria_id,
+        'modelo_id': producto.modelo_id,
+        'almacenamiento_id': producto.almacenamiento_id,
+        'color_id': producto.color_id,
         'stock': producto.stock,
         'procesador': producto.procesador,
         'camara': producto.camara,
         'bateria': producto.bateria,
         'pantalla': producto.pantalla,
-        'memoria': producto.memoria,
-        'categoria_id': producto.categoria_id,
-        'modelo_id': producto.modelo_id,
-        'almacenamiento_id': producto.almacenamiento_id,
-        'color_id': producto.color_id
+        'memoria': producto.memoria
     } for producto in productos]
 
     return jsonify(producto_data), 200
@@ -157,21 +157,14 @@ def add_producto():
         almacenamiento_id = data.get('almacenamiento_id')
         color_id = data.get('color_id')
         stock = data.get('stock')
+        procesador = data.get('procesador')
+        camara = data.get('camara')
+        bateria = data.get('bateria')
+        pantalla = data.get('pantalla')
+        memoria = data.get('memoria')
 
-        if not nombre or not descripcion or not precio or not imagen or not categoria_id or not modelo_id or not almacenamiento_id or not color_id or not stock:
-            raise BadRequest('Los campos nombre, descripcion, precio, imagen, categoria_id, modelo_id, almacenamiento_id, color_id y stock son obligatorios')
-        
-        nuevo_producto = Producto(
-            nombre=nombre, 
-            descripcion=descripcion, 
-            precio=precio, 
-            imagen=imagen, 
-            categoria_id=categoria_id, 
-            modelo_id=modelo_id, 
-            almacenamiento_id=almacenamiento_id, 
-            color_id=color_id, 
-            stock=stock
-        )
+        nuevo_producto = Producto(nombre=nombre, descripcion=descripcion, precio=precio, imagen=imagen, categoria_id=categoria_id, modelo_id=modelo_id, almacenamiento_id=almacenamiento_id, color_id=color_id, stock=stock, procesador=procesador, camara=camara, bateria=bateria, pantalla=pantalla, memoria=memoria)
+
         db.session.add(nuevo_producto)
         db.session.commit()
         return jsonify({'message': 'Producto agregado correctamente'}), 201
