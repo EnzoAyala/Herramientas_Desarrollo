@@ -48,6 +48,7 @@ bld/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 .qodo/
+.hintrc
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
