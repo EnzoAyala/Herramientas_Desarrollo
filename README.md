@@ -127,7 +127,27 @@ http://127.0.0.1:5000/
 ![](./screenshots/20.png)
 - Historial de cabeceras
 ![](./screenshots/21.png)
-
+- Creamos nuestro Fork
+![](./screenshots/26.png)
+![](./screenshots/27.png)
+- Clonamos y configuramos nuestro fork
+![](./screenshots/28.png)
+![](./screenshots/29.png)
+- Sincronizamos nuestro fork con el original
+![](./screenshots/30.png)
+- Contribuimos mediante un Pull Requests
+![](./screenshots/31.png)
+![](./screenshots/32.png)
+- Creamos nuestros Issues,Milestones y Projects
+![](./screenshots/37.png)
+![](./screenshots/38.png)
+![](./screenshots/39.png)
+![](./screenshots/40.png)
+![](./screenshots/41.png)
+![](./screenshots/42.png)
+- Pull Requests (revicion cruzada)
+![](./screenshots/37.png)
+![](./screenshots/38.png)
 ### 🏠 Página Principal
 ---
 
@@ -145,4 +165,5 @@ http://127.0.0.1:5000/
 <p align="center">
   <img src="./screenshots/registro.png" alt="Registro" width="450"/>
 </p>
+
 
