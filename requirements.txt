@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 Flask-Login
 mysql-connector-python
 Werkzeug
+psycopg2-binary
