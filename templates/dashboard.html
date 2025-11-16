@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="shortcut icon" href="../static/img/logo.jpg" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 
@@ -39,11 +40,22 @@
 
             <div class="categoria-header">
                 <h2>Categorias</h2>
-                <button id="add-category-btn" class="btn-add-categoria">Añadir nueva categoria</button>
+                <button id="add-category-btn" class="btn-add">Añadir nueva categoria</button>
             </div>
-            
+
             <div id="categoria-table-body" class="categorias-container">
                 <!-- Las categorias se cargarán aquí dinámicamente -->
+            </div>
+
+            <hr>
+
+            <div class="categoria-header">
+                <h2>Productos</h2>
+                <button id="add-product-btn" class="btn-add">Añadir nuevo producto</button>
+            </div>
+
+            <div id="productos-container">
+                <!-- Los productos se cargarán aquí dinámicamente -->
             </div>
 
         </div>
@@ -104,6 +116,109 @@
             </form>
         </div>
     </section>
+
+    <!-- Modal para agregar productos -->
+    <section id="add-product-modal" class="modal"
+        style="display:none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div class="modal-content"
+            style="background-color: #fff; margin: 5% auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; width: 90%; max-width: 800px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <span class="close"
+                style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h2 style="color: #3498db; margin-top: 0;">Agregar Producto</h2>
+            <form id="add-product-form">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <!-- Columna izquierda -->
+                    <div style="flex: 1; min-width: 300px;">
+                        <label for="producto-name" style="color: #333; font-weight: 600;">Nombre del Producto:</label>
+                        <input type="text" id="producto-name" name="producto-name" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-description" style="color: #333; font-weight: 600;">Descripción:</label>
+                        <textarea id="producto-description" name="producto-description" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; resize: none;"></textarea>
+
+                        <label for="producto-price" style="color: #333; font-weight: 600;">Precio:</label>
+                        <input type="text" id="producto-price" name="producto-price" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-image" style="color: #333; font-weight: 600;">URL de la Imagen:</label>
+                        <input type="text" id="producto-image" name="producto-image" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-categoria" style="color: #333; font-weight: 600;">Categoria:</label>
+                        <select id="producto-categoria" name="producto-categoria" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="1">Apple</option>
+                            <option value="2">Samsung</option>
+                            <option value="3">Xiaomi</option>
+                        </select>
+
+                        <label for="producto-modelo" style="color: #333; font-weight: 600;">Modelo:</label>
+                        <select id="producto-modelo" name="producto-modelo" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="1">Modelo 1</option>
+                            <option value="2">Modelo 2</option>
+                            <option value="3">Modelo 3</option>
+                        </select>
+
+                        <label for="producto-almacenamiento"
+                            style="color: #333; font-weight: 600;">Almacenamiento:</label>
+                        <select id="producto-almacenamiento" name="producto-almacenamiento" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="1">128GB</option>
+                            <option value="2">256GB</option>
+                            <option value="3">1TB</option>
+                        </select>
+                    </div>
+
+                    <!-- Columna derecha -->
+                    <div style="flex: 1; min-width: 300px;">
+                        <label for="producto-color" style="color: #333; font-weight: 600;">Color:</label>
+                        <select id="producto-color" name="producto-color" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="1">Color 1</option>
+                            <option value="2">Color 2</option>
+                            <option value="3">Color 3</option>
+                        </select>
+
+                        <label for="producto-stock" style="color: #333; font-weight: 600;">Stock:</label>
+                        <input type="number" id="producto-stock" name="producto-stock" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-procesador" style="color: #333; font-weight: 600;">Procesador:</label>
+                        <select id="producto-procesador" name="producto-procesador" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                            <option value="1">Intel Core i7</option>
+                            <option value="2">Intel Core i5</option>
+                            <option value="3">Intel Core i3</option>
+                        </select>
+
+                        <label for="producto-camara" style="color: #333; font-weight: 600;">Camara:</label>
+                        <input type="text" id="producto-camara" name="producto-camara" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-bateria" style="color: #333; font-weight: 600;">Bateria:</label>
+                        <input type="text" id="producto-bateria" name="producto-bateria" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-pantalla" style="color: #333; font-weight: 600;">Pantalla:</label>
+                        <input type="text" id="producto-pantalla" name="producto-pantalla" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+
+                        <label for="producto-memoria" style="color: #333; font-weight: 600;">Memoria:</label>
+                        <input type="text" id="producto-memoria" name="producto-memoria" required
+                            style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <button type="submit"
+                    style="width: 100%; background-color: #3498db; color: white; padding: 14px 20px; margin: 20px 0 0; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; font-size: 16px;">
+                    Agregar
+                </button>
+            </form>
+        </div>
+    </section>
+
 
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 </body>

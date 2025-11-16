@@ -59,6 +59,9 @@ pip install Flask-Login
 pip install Flask-SQLAlchemy
 ```
 ```bash
+pip install flask-migrate
+```
+```bash
 pip install mysql-connector-python
 ```
 ### 2. Ejecutar la Aplicación

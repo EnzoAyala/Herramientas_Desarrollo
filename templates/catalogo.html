@@ -1,63 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda Virtual</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/catalogo.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body>
-    <!-- Header -->
-    <header>
-      <div class="logo">TiendaVirtual</div>
-      <i class="fas fa-bars menu-toggle"></i>
-      <nav>
-        <a href="{{ url_for('index') }}">Inicio</a>
-        <a href="#nosotros">Sobre Nosotros</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <div class="auth-buttons">
-        {% if current_user.is_authenticated %}
-          {% if current_user.rol.name == 'administrador' %}
-            <a href="{{ url_for('dashboard') }}">Dashboard</a>
-          {% endif %}
-          <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
-        {% else %}
-          <a href="{{ url_for('login') }}">Iniciar Sesión</a>
-          <a href="{{ url_for('register') }}">Registrarse</a>
-        {% endif %}
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda Virtual</title>
+  <link rel="shortcut icon" href="../static//img/logo.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/catalogo.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-    <!-- Catálogo -->
-    <section class="section" id="catalogo" style="background-color: #e6e6e6;">
-      <h2>Catálogo</h2>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">TiendaVirtual</div>
+    <i class="fas fa-bars menu-toggle"></i>
+    <nav>
+      <a href="{{ url_for('index') }}">Inicio</a>
+      <a href="/#nosotros">Sobre Nosotros</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="auth-buttons">
+      {% if current_user.is_authenticated %}
+      {% if current_user.rol.name == 'administrador' %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      {% endif %}
+      <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+      {% else %}
+      <a href="{{ url_for('login') }}">Iniciar Sesión</a>
+      <a href="{{ url_for('register') }}">Registrarse</a>
+      {% endif %}
+    </div>
+  </header>
 
-      <!-- Sección: Iphone -->
+  <!-- Catálogo -->
+  <section class="section" id="catalogo" style="background-color: #e6e6e6;">
+    <h2>Catálogo</h2>
+
+    <!-- Sección: Iphone -->
+    <div id="iphone">
       <h3 class="categoria">Iphone</h3>
       <div class="catalogo">
         <div class="producto">
           <img src="" alt="Iphone 1" />
-            <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
         </div>
-        
-         <div class="producto">
+
+        <div class="producto">
           <img src="" alt="Iphone2" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
@@ -65,7 +61,7 @@
 
         <div class="producto">
           <img src="" alt="Iphone3" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
@@ -73,20 +69,22 @@
 
         <div class="producto">
           <img src="" alt="Iphone4" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
         </div>
+      </div>
     </div>
-      
-      
-      <!-- Sección: Samsung -->
+
+
+    <!-- Sección: Samsung -->
+    <div id="samsung">
       <h3 class="categoria">Samsung</h3>
       <div class="catalogo">
         <div class="producto">
           <img src="" alt="Samsung 1" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
@@ -94,7 +92,7 @@
 
         <div class="producto">
           <img src="" alt="Samsung 2" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
@@ -102,7 +100,7 @@
 
         <div class="producto">
           <img src="" alt="Samsung 3" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
@@ -110,15 +108,17 @@
 
         <div class="producto">
           <img src="" alt="Samsung 4" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
         </div>
       </div>
-    
+    </div>
 
-      <!-- Sección: Xiaomi -->
+
+    <!-- Sección: Xiaomi -->
+    <div id="xiaomi">
       <h3 class="categoria">Xiaomi</h3>
       <div class="catalogo">
         <div class="producto">
@@ -133,59 +133,73 @@
           <img src="" alt="Xiaomi 2"" />
            <h3>Nombre</h3>
           <p>Descripción del producto</p>
-          <p class="precio">$00</p>
+          <p class=" precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
         </div>
-        
+
         <div class="producto">
           <img src="" alt="Xiaomi 3" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
         </div>
 
-         <div class="producto">
+        <div class="producto">
           <img src="" alt="Xiaomi 4" />
-           <h3>Nombre</h3>
+          <h3>Nombre</h3>
           <p>Descripción del producto</p>
           <p class="precio">$00</p>
           <a href="#" class="btn">Agregar al carrito</a>
 
+        </div>
       </div>
-    </section>
+  </section>
 
-    <!-- Contacto -->
-    <section class="contacto" id="contacto">
-      <h2>Contáctanos</h2>
-      <p>
-        <i class="fa-solid fa-location-dot"></i> Dirección: Av. La Mar N°2275,
-        Tda. 164 San Miguel C.C. ShoppingCenter <br />
-        <i class="fa-solid fa-phone-volume"></i> Teléfono: +51 999999999 <br />
-        <i class="fa-solid fa-envelope"></i> Correo:
-        <a href="mailto:info@largophone.com">info@largophone.com</a>
-      </p>
+  <!-- Contacto -->
+  <section class="contacto" id="contacto">
+    <h2>Contáctanos</h2>
+    <p>
+      <i class="fa-solid fa-location-dot"></i> Dirección: Av. La Mar N°2275,
+      Tda. 164 San Miguel C.C. ShoppingCenter <br />
+      <i class="fa-solid fa-phone-volume"></i> Teléfono: +51 999999999 <br />
+      <i class="fa-solid fa-envelope"></i> Correo:
+      <a href="mailto:info@largophone.com">info@largophone.com</a>
+    </p>
 
-      <div class="social-icons">
-        <a href="#"><i class="fa-brands fa-instagram fa-2xl"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook fa-2xl"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter fa-2xl"></i></a>
-        <a href="#"><i class="fa-brands fa-youtube fa-2xl"></i></a>
-      </div>
-    </section>
+    <div class="social-icons">
+      <a href="#"><i class="fa-brands fa-instagram fa-2xl"></i></a>
+      <a href="#"><i class="fa-brands fa-facebook fa-2xl"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin fa-2xl"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter fa-2xl"></i></a>
+      <a href="#"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-      <p>© 2025 VirtualShop. Todos los derechos reservados.</p>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 VirtualShop. Todos los derechos reservados.</p>
+  </footer>
 
-    <script>
-      const toggle = document.querySelector(".menu-toggle");
-      const nav = document.querySelector("nav");
-      toggle.addEventListener("click", () => {
-        nav.classList.toggle("active");
-      });
-    </script>
-  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }, 200); // Espera un poco por si el contenido se carga dinámicamente
+        }
+      }
+    });
+
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("nav");
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+  </script>
+</body>
+
 </html>

@@ -57,8 +57,19 @@ class Producto(db.Model):
     descripcion = db.Column(db.Text)
     precio = db.Column(db.Numeric(10, 2))
     imagen = db.Column(db.Text)
+    stock = db.Column(db.Integer)
+    procesador = db.Column(db.String(100))
+    camara =db.Column(db.String(100))
+    bateria = db.Column(db.String(50))
+    pantalla = db.Column(db.String(50))
+    memoria = db.Column(db.String(50))
     categoria_id = db.Column(db.Integer, db.ForeignKey('categorias.id'))
     modelo_id = db.Column(db.Integer, db.ForeignKey('modelos.id'))
     almacenamiento_id = db.Column(db.Integer, db.ForeignKey('almacenamientos.id'))
     color_id = db.Column(db.Integer, db.ForeignKey('colores.id'))
-    stock = db.Column(db.Integer)
+
+class ImagenProducto(db.Model):
+    __tablename__ = 'imagenes_productos'
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.Text, nullable=False)
+    producto_id = db.Column(db.Integer, db.ForeignKey('productos.id'), nullable=False)

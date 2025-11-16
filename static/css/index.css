@@ -13,6 +13,10 @@ body {
     background-color: #fafafa;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Header */
 header {
     display: flex;

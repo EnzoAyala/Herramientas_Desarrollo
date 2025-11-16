@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from models import db, Usuario, Categoria
+from models import db, Usuario, Categoria, Producto
 from security import admin_required
 from werkzeug.exceptions import BadRequest
 
@@ -114,3 +114,62 @@ def remove_categoria(categoria_id):
     except Exception as e:
         return jsonify({'error': 'Error al eliminar la categoria'}), 500
 # ---------------------------------------------------------------------------------------------------------
+
+# METODOS DE PRODUCTO ---------------------------------------------------------------------------------
+@api.route('/producto/get', methods=['GET'])
+def get_productos():
+    productos = Producto.query.all()
+
+    if not productos:
+        return jsonify({'mensaje': 'No hay productos disponibles'}), 200
+
+    producto_data = [{
+        'id': producto.id,
+        'nombre': producto.nombre,
+        'descripcion': producto.descripcion,
+        'precio': producto.precio,
+        'imagen': producto.imagen,
+        'categoria_id': producto.categoria_id,
+        'modelo_id': producto.modelo_id,
+        'almacenamiento_id': producto.almacenamiento_id,
+        'color_id': producto.color_id,
+        'stock': producto.stock,
+        'procesador': producto.procesador,
+        'camara': producto.camara,
+        'bateria': producto.bateria,
+        'pantalla': producto.pantalla,
+        'memoria': producto.memoria
+    } for producto in productos]
+
+    return jsonify(producto_data), 200
+
+@api.route('/producto/add', methods=['POST'])
+@admin_required
+def add_producto():
+    try:
+        data = request.get_json()
+        nombre = data.get('nombre')
+        descripcion = data.get('descripcion')
+        precio = data.get('precio')
+        imagen = data.get('imagen')
+        categoria_id = data.get('categoria_id')
+        modelo_id = data.get('modelo_id')
+        almacenamiento_id = data.get('almacenamiento_id')
+        color_id = data.get('color_id')
+        stock = data.get('stock')
+        procesador = data.get('procesador')
+        camara = data.get('camara')
+        bateria = data.get('bateria')
+        pantalla = data.get('pantalla')
+        memoria = data.get('memoria')
+
+        nuevo_producto = Producto(nombre=nombre, descripcion=descripcion, precio=precio, imagen=imagen, categoria_id=categoria_id, modelo_id=modelo_id, almacenamiento_id=almacenamiento_id, color_id=color_id, stock=stock, procesador=procesador, camara=camara, bateria=bateria, pantalla=pantalla, memoria=memoria)
+
+        db.session.add(nuevo_producto)
+        db.session.commit()
+        return jsonify({'message': 'Producto agregado correctamente'}), 201
+    
+    except BadRequest as e:
+        return jsonify({'error': str(e)}), 400
+    except Exception as e:
+        return jsonify({'error': 'Error al agregar el producto'}), 500
