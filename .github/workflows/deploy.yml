@@ -17,4 +17,4 @@ jobs:
           RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
           echo "Iniciando despliegue en Render..."
-          curl -X POST "$RENDER_DEPLOY_HOOK_URL
+          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
