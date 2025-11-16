@@ -1,8 +1,8 @@
-lab-b: name: Deploy to Render
+name: deploy
 on:
   push:
     branches:
-      - main
+      - prueba_render
 
 jobs:
   deploy:
