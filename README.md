@@ -7,7 +7,7 @@ El proyecto busca mostrar la integración entre frontend, backend y base de dato
 
 
 ## ✅ Requerimientos Funcionales  
-1. El sistema debe permitir a los usuarios **registrarse e iniciar sesión** con credenciales válidas.  
+1. El sistema debe permitir a los usuarios **registrarse e iniciar sesión** con credenciales válidas SI.  
 2. El usuario podrá **visualizar un catálogo de productos** con nombre, precio e imagen.  
 3. El sistema debe permitir **agregar y eliminar productos** del carrito de compras.  
 4. El usuario podrá **visualizar un resumen de su carrito** con el total calculado automáticamente.  
