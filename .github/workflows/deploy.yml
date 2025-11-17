@@ -1,0 +1,24 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - prueba_render      
+  workflow_dispatch:       
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: prueba_render
+
+      - name: Trigger Render deploy
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          echo "Desplegando manualmente..."
+          curl -X POST "$RENDER_DEPLOY_HOOK_URL"
