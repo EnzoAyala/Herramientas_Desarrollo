@@ -3,8 +3,8 @@ name: deploy
 on:
   push:
     branches:
-      - prueba_render      
-  workflow_dispatch:       
+      - main
+  workflow_dispatch:
 jobs:
   deploy:
     if: github.event_name == 'workflow_dispatch'
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: prueba_render
+          ref: main
 
       - name: Trigger Render deploy
         env:
