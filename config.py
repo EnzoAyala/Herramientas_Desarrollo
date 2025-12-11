@@ -1,8 +1,7 @@
 #config.py
 
-DB_URI = 'mysql+mysqlconnector://root:root@localhost/largophone'
-
+import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = DB_URI
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -7,7 +7,7 @@ El proyecto busca mostrar la integración entre frontend, backend y base de dato
 
 
 ## ✅ Requerimientos Funcionales  
-1. El sistema debe permitir a los usuarios **registrarse e iniciar sesión** con credenciales válidas.  
+1. El sistema debe permitir a los usuarios **registrarse e iniciar sesión** con credenciales válidas SI.  
 2. El usuario podrá **visualizar un catálogo de productos** con nombre, precio e imagen.  
 3. El sistema debe permitir **agregar y eliminar productos** del carrito de compras.  
 4. El usuario podrá **visualizar un resumen de su carrito** con el total calculado automáticamente.  
@@ -152,6 +152,41 @@ http://127.0.0.1:5000/
 ![](./screenshots/j.png)
 
 
+- Creamos nuestro Fork
+![](./screenshots/26.png)
+![](./screenshots/27.png)
+- Clonamos y configuramos nuestro fork
+![](./screenshots/28.png)
+![](./screenshots/29.png)
+- Sincronizamos nuestro fork con el original
+![](./screenshots/30.png)
+- Contribuimos mediante un Pull Requests
+![](./screenshots/31.png)
+![](./screenshots/32.png)
+- Creamos nuestros Issues,Milestones y Projects
+![](./screenshots/37.png)
+![](./screenshots/38.png)
+![](./screenshots/39.png)
+![](./screenshots/40.png)
+![](./screenshots/41.png)
+![](./screenshots/42.png)
+- Pull Requests (revicion cruzada)
+![](./screenshots/44.png)
+![](./screenshots/43.png)
+- Gestion de Incidencias (Solucionamos un Bug y un Hotfix)
+![](./screenshots/45.png)
+![](./screenshots/46.png)
+![](./screenshots/47.png)
+![](./screenshots/48.png)
+- Integracion Continua (CI)
+![](./screenshots/49.png)
+![](./screenshots/50.png)
+![](./screenshots/51.png)
+- Desplige Continuo (CD)
+![](./screenshots/52.png)
+![](./screenshots/53.png)
+![](./screenshots/54.png)
+![](./screenshots/55.png)
 ### 🏠 Página Principal
 ---
 
@@ -169,4 +204,5 @@ http://127.0.0.1:5000/
 <p align="center">
   <img src="./screenshots/registro.png" alt="Registro" width="450"/>
 </p>
+
 
