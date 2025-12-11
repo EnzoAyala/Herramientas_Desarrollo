@@ -130,6 +130,28 @@ http://127.0.0.1:5000/
 ![](./screenshots/20.png)
 - Historial de cabeceras
 ![](./screenshots/21.png)
+
+---
+- Docker File
+![](./screenshots/a.png)
+- Commit subiendo el DockerFile
+![](./screenshots/b.png)
+- Acceso del token 
+![](./screenshots/c.png)
+- CI con Docker
+![](./screenshots/d.png)
+- Packages 
+![](./screenshots/e.png)
+-Render con Docker
+![](./screenshots/f.png)
+- CD con Docker
+![](./screenshots/g.png)
+- Proyecto subibdo 
+![](./screenshots/h.png)
+![](./screenshots/i.png)
+![](./screenshots/j.png)
+
+
 - Creamos nuestro Fork
 ![](./screenshots/26.png)
 ![](./screenshots/27.png)
